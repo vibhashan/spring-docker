@@ -12,14 +12,14 @@ jobs:
       - name: Add SSH key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{secrets.PRIVATE_KEY}}
-          known_hosts: ${{secrets.VM_IP}}
+          key: ${{ secrets.PRIVATE_KEY }}
+          known_hosts: ${{ secrets.VM_IP }}
 
       - name: Deploy to Oracle Cloud VM
         run: |
-          ssh -o StrictHostKeyChecking=no ${{secrets.VM_USERNAME}}@${{secrets.VM_IP}} << 'EOF'
-          docker pull ${{secrets.DOCKERHUB_USERNAME}}/spring-docker:latest
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} << 'EOF'
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-docker:latest
           docker stop spring-docker || true
           docker rm spring-docker || true
-          docker run -d --name spring-docker -p ${{vars.VM_PORT}}:5000 ${{secrets.DOCKERHUB_USERNAME}}/spring-docker:latest
+          docker run -d --name spring-docker -p ${{ vars.VM_PORT }}:5000 ${{ secrets.DOCKERHUB_USERNAME }}/spring-docker:latest
           EOF
