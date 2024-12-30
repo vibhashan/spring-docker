@@ -1,8 +1,0 @@
-version: "3.8"
-services:
-  spring_docker:
-    build: .
-    image: spring_docker
-    container_name: spring_docker
-    ports:
-      - 5000:5000
