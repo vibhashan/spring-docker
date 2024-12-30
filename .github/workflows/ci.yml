@@ -12,6 +12,6 @@ jobs:
         with:
           java-version: "21"
           distribution: "temurin"
-          cache: "maven"
-      - name: Run the Maven package verify phase
-        run: ./mvnw package verify
+          cache: maven
+      - name: Build with maven
+        run: mvn package verify
